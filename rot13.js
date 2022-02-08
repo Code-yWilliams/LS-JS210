@@ -13,12 +13,15 @@
 
 function rotate(charCode) {
   const ROTATION = 13;
+  const RANGE = { lowerCaseA: 97, lowerCaseM: 109, lowerCaseN: 110,
+                  lowerCaseZ: 122, upperCaseA: 65, upperCaseM: 77,
+                  upperCaseN: 78, upperCaseZ: 90 }
 
-  if ((charCode >= 97 && charCode <= 109) || 
-      (charCode >= 65 && charCode <= 78)) {
+  if ((charCode >= RANGE['lowerCaseA'] && charCode <= RANGE['lowerCaseM']) || 
+      (charCode >= RANGE['upperCaseA'] && charCode <= RANGE['upperCaseM'])) {
         charCode += ROTATION;
-  } else if ((charCode >= 110 && charCode <= 122) ||
-             (charCode >= 79 && charCode <= 90)) {
+  } else if ((charCode >= RANGE['lowerCaseN'] && charCode <= RANGE['lowerCaseZ']) ||
+             (charCode >= RANGE['upperCaseN'] && charCode <= RANGE['upperCaseZ'])) {
                charCode -= ROTATION;
              }
 
@@ -36,3 +39,9 @@ function rot13(string) {
   
   return result;
 }
+
+
+
+const FOX = 'THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.';
+console.log(rot13(FOX) === 'GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT.');
+console.log(rot13(rot13(FOX)) === FOX);

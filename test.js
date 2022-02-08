@@ -82,22 +82,22 @@
 
 // Nth Factorial
 
-function factorial(n) {
-  let result = 1;
-  for (let num = n; num > 0; num--) {
-    result *= num;
-  }
-  return result;
-}
+// function factorial(n) {
+//   let result = 1;
+//   for (let num = n; num > 0; num--) {
+//     result *= num;
+//   }
+//   return result;
+// }
 
 // Nth Factorial - recursive
 
-function fac(n) {
-  if (n === 1) {
-    return 1;
-  }
-  return n * fac(n - 1);
-}
+// function fac(n) {
+//   if (n === 1) {
+//     return 1;
+//   }
+//   return n * fac(n - 1);
+// }
 
 
 // log only the even values to the console:
@@ -303,7 +303,34 @@ let array = [3, 5, 7];
 // console.log(allMatches(words, /lab/));
 
 
-let lastName = "Williams";
-let familyMessage = (lastName === "Williams" ? "You're part of the fambam." : 
-                                               "You're not part of the fambam");
-console.log(familyMessage);
+// let lastName = "Williams";
+// let familyMessage = (lastName === "Williams" ? "You're part of the fambam." : 
+//                                                "You're not part of the fambam");
+// console.log(familyMessage);
+
+function rotate(charCode) {
+  const ROTATION = 13;
+
+  if ((charCode >= 97 && charCode <= 122) || 
+      (charCode >= 65 && charCode <= 90)) {
+        charCode += ROTATION;
+  } 
+
+  charCode %= 26
+  return charCode;
+}
+
+function rot13(string) {
+  let result = "";
+
+  for (let i = 0; i < string.length; i++) {
+    let currentCharCode = string.charCodeAt(i);
+    let rotatedCharCode = rotate(currentCharCode);
+    result += String.fromCharCode(rotatedCharCode);
+  }
+  
+  return result;
+}
+
+console.log(rot13('Teachers open the door, but you must enter by yourself.'));
+console.log(rot13(rot13('Teachers open the door, but you must enter by yourself.')));
